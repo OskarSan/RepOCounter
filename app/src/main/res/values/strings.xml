@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">"Rep O' Counter"</string>
+    <string name="routines">Routines</string>
+    <string name="exercises">Exercises</string>
+    <string name="statistics">Statistics</string>
+
+    <string-array name="routines">
+        <item>push</item>
+        <item>pull</item>
+        <item>legs</item>
+    </string-array>
+
+
+</resources>
