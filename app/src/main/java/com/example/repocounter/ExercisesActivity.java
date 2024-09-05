@@ -7,8 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ExercisesActivity extends AppCompatActivity {
+
+    private Storage storage;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +25,13 @@ public class ExercisesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        storage = Storage.getInstance();
+
+        recyclerView = findViewById(R.id.exercisesRecyclerView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new ExerciseListAdapter(storage.getExerciseArrayList(), getApplicationContext()));
+
     }
 }

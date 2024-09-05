@@ -19,7 +19,7 @@
             android:name=".ExercisesActivity"
             android:exported="false" />
         <activity
-            android:name=".RoutinesActivity"
+            android:name=".WorkoutsActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
