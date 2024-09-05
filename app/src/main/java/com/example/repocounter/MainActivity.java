@@ -28,10 +28,20 @@ public class MainActivity extends AppCompatActivity {
         Button exercisesActivityButton = (Button) findViewById(R.id.exercises_button);
         Button statistcsActivityButton = (Button) findViewById(R.id.statistics_button);
 
+
+
+        //example exercises
+        Exercise exampleExercise1 = new Exercise("pena","perus penkki", 10, 80);
+        Exercise exampleExercise2 = new Exercise("kyykky","ylösalas", 10, 100);
+        Storage.getInstance().addExercise(exampleExercise1);
+        Storage.getInstance().addExercise(exampleExercise2);
+
+
+
         routinesActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent startIntent = new Intent(getApplicationContext(), RoutinesActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), WorkoutsActivity.class);
                 startActivity(startIntent);
 
             }
