@@ -1,7 +1,6 @@
 package com.example.repocounter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Storage {
 
@@ -29,10 +28,20 @@ public class Storage {
     }
 
     public ArrayList<Exercise> getExerciseArrayList(){
+        System.out.println(exerciseArrayList.size());
         return exerciseArrayList;
     }
     public ArrayList<Workout> getwWorkoutHashMap(){
         return workoutArrayList;
+    }
+
+    public void editExercise(Exercise exercise) {
+        for (int i = 0; i < exerciseArrayList.size(); i++) {
+            if (exerciseArrayList.get(i).exerciseName.equals(exercise.exerciseName)) {
+                exerciseArrayList.set(i, exercise);
+                break;
+            }
+        }
     }
 
 

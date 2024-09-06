@@ -4,6 +4,8 @@
     <string name="exercises">Exercises</string>
     <string name="statistics">Statistics</string>
 
+    <string name="confirm">Confirm</string>
+
     <string-array name="routines">
         <item>push</item>
         <item>pull</item>

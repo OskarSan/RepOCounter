@@ -1,6 +1,8 @@
 package com.example.repocounter;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +33,20 @@ public class ExercisesActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.exercisesRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ExerciseListAdapter(storage.getExerciseArrayList(), getApplicationContext()));
+        recyclerView.setAdapter(new ExercisesListAdapter(storage.getExerciseArrayList(), getApplicationContext()));
+
+
+        Button editExerciseButton = findViewById(R.id.editExerciseButton);
+
+        editExerciseButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), ExerciseEditActivity.class);
+            intent.putExtra("key", "new");
+            startActivity(intent);
+        });
 
     }
+
+
+
+
 }

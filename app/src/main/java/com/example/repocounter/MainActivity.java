@@ -28,15 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Button exercisesActivityButton = (Button) findViewById(R.id.exercises_button);
         Button statistcsActivityButton = (Button) findViewById(R.id.statistics_button);
 
-
-
-        //example exercises
-        Exercise exampleExercise1 = new Exercise("pena","perus penkki", 10, 80);
-        Exercise exampleExercise2 = new Exercise("kyykky","ylösalas", 10, 100);
-        Storage.getInstance().addExercise(exampleExercise1);
-        Storage.getInstance().addExercise(exampleExercise2);
-
-
+        Storage.getInstance().addExercise(new Exercise(ExerciseType.PUSH, "pena", "pena", 10, 10 ));
 
         routinesActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
