@@ -1,5 +1,12 @@
 package com.example.repocounter;
 
+import android.content.Context;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,6 +16,11 @@ public class Storage {
     public static Storage getInstance(){
         if(storage == null){
             storage = new Storage();
+            storage.addExercise(new Exercise(ExerciseType.PUSH, "pena", "pena", 10, 10 ));
+            storage.addExercise(new Exercise(ExerciseType.PULL, "vetoo", "vetoilu", 10, 10 ));
+            storage.addExercise(new Exercise(ExerciseType.LEGS, "kykky", "kykky", 10, 10 ));
+            storage.addExercise(new Exercise(ExerciseType.PUSH, "vinopena", "vinoilupena", 10, 10 ));
+
         }
         return storage;
     }
@@ -64,5 +76,23 @@ public class Storage {
         exerciseArrayList.sort((o1, o2) -> o1.getExerciseType().compareTo(o2.getExerciseType()));
     }
 
+    public void saveExercisesToFile(Context context){
+        try {
+            ObjectOutputStream exerciseWriter = new ObjectOutputStream(context.openFileOutput("exercises.ser", Context.MODE_PRIVATE));
+            exerciseWriter.writeObject(exerciseArrayList);
+            exerciseWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void loadExercisesFromFile(Context context){
+        try {
+            ObjectInputStream exerciseReader = new ObjectInputStream(context.openFileInput("exercises.ser"));
+            exerciseArrayList = (ArrayList<Exercise>) exerciseReader.readObject();
+            exerciseReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

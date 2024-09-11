@@ -32,6 +32,7 @@ public class ExercisesActivity extends AppCompatActivity {
         });
 
         storage = Storage.getInstance();
+        storage.loadExercisesFromFile(getApplicationContext());
         storage.sortExercisesByType();
 
         recyclerView = findViewById(R.id.exercisesRecyclerView);

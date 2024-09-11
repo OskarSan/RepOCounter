@@ -85,7 +85,8 @@ public class ExerciseEditActivity extends AppCompatActivity {
             }else{
                 Storage.getInstance().editExercise(new Exercise(type, name, description, weight, reps), exercise.getExerciseID());
             }
-
+            Storage.getInstance().saveExercisesToFile(getApplicationContext());
+            Storage.getInstance().loadExercisesFromFile(getApplicationContext());
             Intent intent = new Intent(getApplicationContext(), ExercisesActivity.class);
             startActivity(intent);
             finish();

@@ -1,5 +1,6 @@
 package com.example.repocounter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Button exercisesActivityButton = (Button) findViewById(R.id.exercises_button);
         Button statistcsActivityButton = (Button) findViewById(R.id.statistics_button);
 
-        Storage.getInstance().addExercise(new Exercise(ExerciseType.PUSH, "pena", "pena", 10, 10 ));
-        Storage.getInstance().addExercise(new Exercise(ExerciseType.PULL, "vetoo", "vetoilu", 10, 10 ));
-        Storage.getInstance().addExercise(new Exercise(ExerciseType.LEGS, "kykky", "kykky", 10, 10 ));
-        Storage.getInstance().addExercise(new Exercise(ExerciseType.PUSH, "vinopena", "vinoilupena", 10, 10 ));
+        Storage.getInstance().saveExercisesToFile(getApplicationContext());
+        Storage.getInstance().loadExercisesFromFile(getApplicationContext());
 
         routinesActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
