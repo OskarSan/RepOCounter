@@ -3,6 +3,7 @@ package com.example.repocounter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ public class ExercisesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_exercises);
@@ -29,16 +32,16 @@ public class ExercisesActivity extends AppCompatActivity {
         });
 
         storage = Storage.getInstance();
+        storage.sortExercisesByType();
 
         recyclerView = findViewById(R.id.exercisesRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ExercisesListAdapter(storage.getExerciseArrayList(), getApplicationContext()));
 
+        Button addExerciseButton = findViewById(R.id.addExerciseButton);
 
-        Button editExerciseButton = findViewById(R.id.editExerciseButton);
-
-        editExerciseButton.setOnClickListener(view -> {
+        addExerciseButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), ExerciseEditActivity.class);
             intent.putExtra("key", "new");
             startActivity(intent);

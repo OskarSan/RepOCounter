@@ -1,6 +1,7 @@
 package com.example.repocounter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Storage {
 
@@ -31,17 +32,36 @@ public class Storage {
         System.out.println(exerciseArrayList.size());
         return exerciseArrayList;
     }
-    public ArrayList<Workout> getwWorkoutHashMap(){
+    public ArrayList<Workout> getWorkoutArrayList(){
         return workoutArrayList;
     }
 
-    public void editExercise(Exercise exercise) {
-        for (int i = 0; i < exerciseArrayList.size(); i++) {
-            if (exerciseArrayList.get(i).exerciseName.equals(exercise.exerciseName)) {
-                exerciseArrayList.set(i, exercise);
-                break;
+    public Exercise findExerciseById(String id){
+        for(Exercise exercise : exerciseArrayList){
+            if(exercise.exerciseID.equals(id)){
+                return exercise;
             }
         }
+        return null;
+    }
+
+    public void editExercise(Exercise newExercise, String oldID) {
+        Iterator<Exercise> iterator = exerciseArrayList.iterator();
+        while (iterator.hasNext()) {
+            Exercise ex = iterator.next();
+            if (ex.exerciseID.equals(oldID)) {
+                iterator.remove(); // Use iterator.remove() to safely remove the element
+                newExercise.setExerciseID(oldID);
+                exerciseArrayList.add(newExercise);
+                break; // Exit the loop after replacing the exercise
+            }
+        }
+        //sortExercisesByType();
+
+    }
+
+    public void sortExercisesByType(){
+        exerciseArrayList.sort((o1, o2) -> o1.getExerciseType().compareTo(o2.getExerciseType()));
     }
 
 

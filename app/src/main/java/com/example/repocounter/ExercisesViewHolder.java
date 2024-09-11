@@ -19,5 +19,9 @@ public class ExercisesViewHolder extends RecyclerView.ViewHolder{
         imageView = itemView.findViewById(R.id.exerciseEditImageView);
 
 
+
+
     }
+
+
 }

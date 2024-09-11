@@ -16,9 +16,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ExerciseEditActivity extends AppCompatActivity {
 
+    Exercise exercise;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class ExerciseEditActivity extends AppCompatActivity {
 
 
 
-        if(getIntent().getStringExtra("key").equals("new")){
+        if(Objects.equals(getIntent().getStringExtra("key"), "new")){
             titleText.setText("Create new exercise");
             exerciseNameEditText.setHint("Exercise name");
             exerciseDescriptionEditText.setHint("Exercise description");
@@ -59,6 +61,14 @@ public class ExerciseEditActivity extends AppCompatActivity {
 
         }else{
             titleText.setText("Edit exercise");
+
+            exercise = getIntent().getSerializableExtra("exercise") != null ? (Exercise) getIntent().getSerializableExtra("exercise") : null;
+            spinner.setSelection(exercise.getExerciseType().ordinal());
+            exerciseNameEditText.setText(exercise.getExerciseName());
+            exerciseDescriptionEditText.setText(exercise.getExerciseDescription());
+            editWeight.setText(exercise.getWeight().toString());
+            editReps.setText(exercise.getReps().toString());
+
         }
 
         confirmButton.setOnClickListener(view -> {
@@ -70,10 +80,10 @@ public class ExerciseEditActivity extends AppCompatActivity {
             Integer weight = Integer.parseInt(editWeight.getText().toString());
             Integer reps = Integer.parseInt(editReps.getText().toString());
 
-            if(getIntent().getStringExtra("key").equals("new")){
+            if(Objects.equals(getIntent().getStringExtra("key"), "new")){
                 Storage.getInstance().addExercise(new Exercise(type, name, description, weight, reps));
             }else{
-                Storage.getInstance().editExercise(new Exercise(type, name, description, weight, reps));
+                Storage.getInstance().editExercise(new Exercise(type, name, description, weight, reps), exercise.getExerciseID());
             }
 
             Intent intent = new Intent(getApplicationContext(), ExercisesActivity.class);

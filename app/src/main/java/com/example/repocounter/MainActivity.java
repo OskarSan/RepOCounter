@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         Button statistcsActivityButton = (Button) findViewById(R.id.statistics_button);
 
         Storage.getInstance().addExercise(new Exercise(ExerciseType.PUSH, "pena", "pena", 10, 10 ));
+        Storage.getInstance().addExercise(new Exercise(ExerciseType.PULL, "vetoo", "vetoilu", 10, 10 ));
+        Storage.getInstance().addExercise(new Exercise(ExerciseType.LEGS, "kykky", "kykky", 10, 10 ));
+        Storage.getInstance().addExercise(new Exercise(ExerciseType.PUSH, "vinopena", "vinoilupena", 10, 10 ));
 
         routinesActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
