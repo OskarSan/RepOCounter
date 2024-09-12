@@ -1,17 +1,21 @@
 package com.example.repocounter;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class WorkoutsActivity extends AppCompatActivity {
-    RecyclerView routinesRecyclerView;
+    private Storage storage;
+    private RecyclerView workoutsRecyclerView;
 
 
 
@@ -26,10 +30,21 @@ public class WorkoutsActivity extends AppCompatActivity {
             return insets;
         });
 
-        Resources res = getResources();
-        routinesRecyclerView = (RecyclerView) findViewById(R.id.routinesRecyclerView);
+        storage = storage.getInstance();
+        /*
+        storage.loadExercisesFromFile(getApplicationContext());
+        storage.sortExercisesByType();
+        */
+        workoutsRecyclerView = findViewById(R.id.workoutsRecyclerView);
+        workoutsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        workoutsRecyclerView.setAdapter(new WorkoutsListAdapter(storage.getWorkoutArrayList(), getApplicationContext()));
 
-
+        Button addWorkoutButton = findViewById(R.id.addWorkoutButton);
+        addWorkoutButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), WorkoutEditActivity.class);
+            intent.putExtra("key", "new");
+            startActivity(intent);
+        });
 
     }
 }

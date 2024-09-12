@@ -21,6 +21,9 @@ public class Storage {
             storage.addExercise(new Exercise(ExerciseType.LEGS, "kykky", "kykky", 10, 10 ));
             storage.addExercise(new Exercise(ExerciseType.PUSH, "vinopena", "vinoilupena", 10, 10 ));
 
+            storage.addWorkout(new Workout("test", storage.getExerciseArrayList()));
+            storage.addWorkout(new Workout("test2", storage.getExerciseArrayList()));
+
         }
         return storage;
     }
