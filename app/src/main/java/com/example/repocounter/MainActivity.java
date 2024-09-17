@@ -1,6 +1,5 @@
 package com.example.repocounter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.repocounter.exercisePackage.ExercisesActivity;
+import com.example.repocounter.workoutsPackage.WorkoutsActivity;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.repocounter;
+package com.example.repocounter.exercisePackage;
 
 public enum ExerciseType {
     PUSH("Push"),

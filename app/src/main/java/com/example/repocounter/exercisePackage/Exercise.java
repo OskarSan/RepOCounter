@@ -1,4 +1,6 @@
-package com.example.repocounter;
+package com.example.repocounter.exercisePackage;
+
+import com.example.repocounter.R;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -6,7 +8,7 @@ import java.util.UUID;
 public class Exercise implements Serializable {
     protected ExerciseType exerciseType;
     protected String exerciseName, exerciseDescription, exerciseID;
-    protected Integer reps, weight;
+    protected Integer reps, weight, sets;
 
     //kuvasetti
     protected int image = R.drawable.ic_launcher_foreground;
@@ -18,7 +20,7 @@ public class Exercise implements Serializable {
         this.exerciseDescription = description;
         this.reps = reps;
         this.weight = weight;
-
+        this.sets = 0;
     }
 
 

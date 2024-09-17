@@ -3,8 +3,11 @@
     <string name="workouts">Workouts</string>
     <string name="exercises">Exercises</string>
     <string name="statistics">Statistics</string>
-
+    <string name="sets">sets: </string>
     <string name="confirm">Confirm</string>
+    <string name="back">Back</string>
+    <string name="workoutName">Workout name</string>
+    <string name="addExercise">Add exercise</string>"
 
     <string-array name="routines">
         <item>push</item>

@@ -1,9 +1,9 @@
-package com.example.repocounter;
+package com.example.repocounter.exercisePackage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.repocounter.MainActivity;
+import com.example.repocounter.R;
+import com.example.repocounter.Storage;
+
+import java.util.Objects;
 
 public class ExercisesActivity extends AppCompatActivity {
 
@@ -35,10 +41,12 @@ public class ExercisesActivity extends AppCompatActivity {
         storage.loadExercisesFromFile(getApplicationContext());
         storage.sortExercisesByType();
 
-        recyclerView = findViewById(R.id.exercisesRecyclerView);
+        recyclerView = findViewById(R.id.exerciseInWorkoutRecyclerView);
+
+        ExercisesListAdapter exercisesListAdapter = new ExercisesListAdapter(storage.getExerciseArrayList(), getApplicationContext());
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ExercisesListAdapter(storage.getExerciseArrayList(), getApplicationContext()));
+        recyclerView.setAdapter(exercisesListAdapter);
 
         Button addExerciseButton = findViewById(R.id.addExerciseButton);
 
@@ -48,6 +56,11 @@ public class ExercisesActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button backButton = findViewById(R.id.exercisesBackButton);
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        });
 
     }
     @Override

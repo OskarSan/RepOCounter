@@ -1,9 +1,9 @@
-package com.example.repocounter;
+package com.example.repocounter.workoutsPackage;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.repocounter.R;
+import com.example.repocounter.Storage;
+import com.example.repocounter.exercisePackage.ExercisesActivity;
 
 public class WorkoutsActivity extends AppCompatActivity {
     private Storage storage;
@@ -31,10 +35,9 @@ public class WorkoutsActivity extends AppCompatActivity {
         });
 
         storage = storage.getInstance();
-        /*
-        storage.loadExercisesFromFile(getApplicationContext());
-        storage.sortExercisesByType();
-        */
+
+        storage.loadWorkoutsFromFile(getApplicationContext());
+
         workoutsRecyclerView = findViewById(R.id.workoutsRecyclerView);
         workoutsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         workoutsRecyclerView.setAdapter(new WorkoutsListAdapter(storage.getWorkoutArrayList(), getApplicationContext()));
@@ -45,6 +48,9 @@ public class WorkoutsActivity extends AppCompatActivity {
             intent.putExtra("key", "new");
             startActivity(intent);
         });
+
+
+
 
     }
 }

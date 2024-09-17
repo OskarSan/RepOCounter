@@ -2,10 +2,11 @@ package com.example.repocounter;
 
 import android.content.Context;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import com.example.repocounter.exercisePackage.Exercise;
+import com.example.repocounter.exercisePackage.ExerciseType;
+import com.example.repocounter.workoutsPackage.Workout;
+
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -53,7 +54,7 @@ public class Storage {
 
     public Exercise findExerciseById(String id){
         for(Exercise exercise : exerciseArrayList){
-            if(exercise.exerciseID.equals(id)){
+            if(exercise.getExerciseID().equals(id)){
                 return exercise;
             }
         }
@@ -64,21 +65,38 @@ public class Storage {
         Iterator<Exercise> iterator = exerciseArrayList.iterator();
         while (iterator.hasNext()) {
             Exercise ex = iterator.next();
-            if (ex.exerciseID.equals(oldID)) {
+            if (ex.getExerciseID().equals(oldID)) {
                 iterator.remove(); // Use iterator.remove() to safely remove the element
                 newExercise.setExerciseID(oldID);
                 exerciseArrayList.add(newExercise);
                 break; // Exit the loop after replacing the exercise
             }
         }
-        //sortExercisesByType();
+
 
     }
+
+    public void editWorkout(Workout newWorkout, String oldID){
+        Iterator<Workout> iterator = workoutArrayList.iterator();
+        while (iterator.hasNext()) {
+            Workout workout = iterator.next();
+            if (workout.getWorkoutID().equals(oldID)){
+                iterator.remove();
+                newWorkout.setWorkoutID(oldID);
+                workoutArrayList.add(newWorkout);
+                break;
+            }
+        }
+    }
+
+
 
     public void sortExercisesByType(){
         exerciseArrayList.sort((o1, o2) -> o1.getExerciseType().compareTo(o2.getExerciseType()));
     }
-
+    public void sortWorkoutsByName(){
+        workoutArrayList.sort((o1, o2) -> o1.getWorkoutName().compareTo(o2.getWorkoutName()));
+    }
     public void saveExercisesToFile(Context context){
         try {
             ObjectOutputStream exerciseWriter = new ObjectOutputStream(context.openFileOutput("exercises.ser", Context.MODE_PRIVATE));
@@ -98,4 +116,26 @@ public class Storage {
             e.printStackTrace();
         }
     }
+
+    public void saveWorkoutsToFile(Context context){
+        try {
+            ObjectOutputStream workoutWriter = new ObjectOutputStream(context.openFileOutput("workouts.ser", Context.MODE_PRIVATE));
+            workoutWriter.writeObject(workoutArrayList);
+            workoutWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadWorkoutsFromFile(Context context){
+        try {
+            ObjectInputStream workoutReader = new ObjectInputStream(context.openFileInput("workouts.ser"));
+            workoutArrayList = (ArrayList<Workout>) workoutReader.readObject();
+            workoutReader.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
 }

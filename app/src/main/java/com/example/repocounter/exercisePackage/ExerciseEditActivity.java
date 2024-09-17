@@ -1,4 +1,4 @@
-package com.example.repocounter;
+package com.example.repocounter.exercisePackage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.repocounter.R;
+import com.example.repocounter.Storage;
 
 import java.util.ArrayList;
 import java.util.List;

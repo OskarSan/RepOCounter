@@ -1,13 +1,14 @@
-package com.example.repocounter;
+package com.example.repocounter.exercisePackage;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.repocounter.R;
 
 import java.util.ArrayList;
 

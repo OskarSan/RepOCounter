@@ -1,4 +1,4 @@
-package com.example.repocounter;
+package com.example.repocounter.workoutsPackage;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.repocounter.R;
 
 public class WorkoutsViewHolder extends RecyclerView.ViewHolder {
     TextView workoutNameTextView;
