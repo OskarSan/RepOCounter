@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
+import com.example.repocounter.exercisePackage.Exercise;
 import com.example.repocounter.exercisePackage.ExercisesActivity;
-import com.example.repocounter.exercisePackage.ExercisesListAdapter;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -45,29 +45,29 @@ public class WorkoutEditActivity extends AppCompatActivity {
         Button confirmButton = findViewById(R.id.workoutEditConfirmButton);
         Button addExerciseToWorkoutButton = findViewById(R.id.addExerciseToWorkoutButton);
 
+
+
         if(Objects.equals(getIntent().getStringExtra("key"), "new")){
             workout = new Workout("new workout",new ArrayList<>());
+            System.out.println("tän koko " + workout.exercises.size());
+            titleText.setText("Create new workout");
+            workoutNameEditText.setHint("Workout name");
 
-        }else{
+        } else if (getIntent().getSerializableExtra("key") instanceof Exercise) {
+            System.out.println("tää tulee ny");
+            System.out.println(workout.exercises.size());
+            workout.getExercises().add((Exercise) getIntent().getSerializableExtra("key"));
+        } else{
             workout = getIntent().getSerializableExtra("workout") != null ? (Workout) getIntent().getSerializableExtra("workout") : null;
+            titleText.setText("Edit workout");
+            workoutNameEditText.setText(workout.getWorkoutName());
         }
 
-        recyclerView = findViewById(R.id.exerciseInWorkoutRecyclerView);
+        recyclerView = findViewById(R.id.exercisesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ExerciseInWorkoutListAdapter(/*change to workouts list*/workout.getExercises(), getApplicationContext()));
 
 
-
-
-        if(Objects.equals(getIntent().getStringExtra("key"), "new")){
-            titleText.setText("Create new workout");
-            workoutNameEditText.setHint("Workout name");
-
-        }else{
-            titleText.setText("Edit workout");
-            workoutNameEditText.setText(workout.getWorkoutName());
-
-        }
 
 
         confirmButton.setOnClickListener(view -> {

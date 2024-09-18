@@ -2,7 +2,6 @@ package com.example.repocounter.exercisePackage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.repocounter.MainActivity;
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
+import com.example.repocounter.workoutsPackage.ChooseExToWorkoutListAdapter;
 
 import java.util.Objects;
 
@@ -41,26 +41,32 @@ public class ExercisesActivity extends AppCompatActivity {
         storage.loadExercisesFromFile(getApplicationContext());
         storage.sortExercisesByType();
 
-        recyclerView = findViewById(R.id.exerciseInWorkoutRecyclerView);
+        recyclerView = findViewById(R.id.exercisesRecyclerView);
 
-        ExercisesListAdapter exercisesListAdapter = new ExercisesListAdapter(storage.getExerciseArrayList(), getApplicationContext());
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(exercisesListAdapter);
+        if(Objects.equals(getIntent().getStringExtra("key"), "addExerciseToWorkout")){
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(new ChooseExToWorkoutListAdapter(storage.getExerciseArrayList(), getApplicationContext()));
 
-        Button addExerciseButton = findViewById(R.id.addExerciseButton);
 
-        addExerciseButton.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), ExerciseEditActivity.class);
-            intent.putExtra("key", "new");
-            startActivity(intent);
-        });
+        }else{
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(new ExercisesListAdapter(storage.getExerciseArrayList(), getApplicationContext()));
 
-        Button backButton = findViewById(R.id.exercisesBackButton);
-        backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        });
+            Button addExerciseButton = findViewById(R.id.addExerciseButton);
+
+            addExerciseButton.setOnClickListener(view -> {
+                Intent intent = new Intent(getApplicationContext(), ExerciseEditActivity.class);
+                intent.putExtra("key", "new");
+                startActivity(intent);
+            });
+
+            Button backButton = findViewById(R.id.exercisesBackButton);
+            backButton.setOnClickListener(view -> {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            });
+        }
 
     }
     @Override
