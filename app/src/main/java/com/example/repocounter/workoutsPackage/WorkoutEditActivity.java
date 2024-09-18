@@ -46,7 +46,7 @@ public class WorkoutEditActivity extends AppCompatActivity {
         Button addExerciseToWorkoutButton = findViewById(R.id.addExerciseToWorkoutButton);
 
 
-
+        //TODO: FIX THIS SHIT
         if(Objects.equals(getIntent().getStringExtra("key"), "new")){
             workout = new Workout("new workout",new ArrayList<>());
             System.out.println("tän koko " + workout.exercises.size());
