@@ -1,7 +1,7 @@
 TODO:
 
 adding exercises to workouts
-  - fix the issue in WorkoutEditActivitys if else statements
+  - make the exercise set numbers work
 
 Starting the workout
 
