@@ -52,13 +52,27 @@ public class WorkoutEditActivity extends AppCompatActivity {
             System.out.println("tän koko " + workout.exercises.size());
             titleText.setText("Create new workout");
             workoutNameEditText.setHint("Workout name");
+            storage.setWorkoutCarrier(workout);
 
-        } else if (getIntent().getSerializableExtra("key") instanceof Exercise) {
+        /*} else if (getIntent().getSerializableExtra("key") instanceof Exercise) {
+            workout = storage.getWorkoutCarrier();
             System.out.println("tää tulee ny");
-            System.out.println(workout.exercises.size());
+            System.out.println(workout.getWorkoutName() +" "+ workout.exercises.size());
+
             workout.getExercises().add((Exercise) getIntent().getSerializableExtra("key"));
+        */
         } else{
-            workout = getIntent().getSerializableExtra("workout") != null ? (Workout) getIntent().getSerializableExtra("workout") : null;
+            if(storage.getWorkoutCarrier() != null){
+                workout = storage.getWorkoutCarrier();
+            }else{
+                workout = getIntent().getSerializableExtra("workout") != null ? (Workout) getIntent().getSerializableExtra("workout") : null;
+
+            }
+            if(storage.getExerciseCarrier() != null){
+                workout.addExercise(storage.getExerciseCarrier());
+                storage.setExerciseCarrier(null);
+            }
+            storage.setWorkoutCarrier(workout);
             titleText.setText("Edit workout");
             workoutNameEditText.setText(workout.getWorkoutName());
         }
@@ -73,15 +87,19 @@ public class WorkoutEditActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(view -> {
             workout.setWorkoutName(workoutNameEditText.getText().toString());
 
+            boolean workoutExists = storage.getWorkoutArrayList().stream()
+                    .anyMatch(w -> Objects.equals(w.getWorkoutID(), workout.getWorkoutID()));
 
-            if(Objects.equals(getIntent().getStringExtra("key"), "new")){
-                storage.addWorkout(workout);
-            }else{
+            if (workoutExists) {
                 storage.editWorkout(workout, workout.getWorkoutID());
+            } else {
+                storage.addWorkout(workout);
             }
+
             Storage.getInstance().saveWorkoutsToFile(getApplicationContext());
             Storage.getInstance().loadWorkoutsFromFile(getApplicationContext());
-
+            storage.setExerciseCarrier(null);
+            storage.setWorkoutCarrier(null);
             Intent intent = new Intent(getApplicationContext(), WorkoutsActivity.class);
             startActivity(intent);
             finish();
@@ -90,7 +108,10 @@ public class WorkoutEditActivity extends AppCompatActivity {
         });
 
         addExerciseToWorkoutButton.setOnClickListener(view -> {
-
+            workout.setWorkoutName(workoutNameEditText.getText().toString());
+            workout.setExercises(workout.getExercises());
+            System.out.println(workout.getWorkoutName());
+            storage.setWorkoutCarrier(workout);
             Intent intent = new Intent(getApplicationContext(), ExercisesActivity.class);
             intent.putExtra("key", "addExerciseToWorkout");
             startActivity(intent);

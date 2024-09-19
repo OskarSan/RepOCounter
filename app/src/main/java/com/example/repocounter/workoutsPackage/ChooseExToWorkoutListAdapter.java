@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
+import com.example.repocounter.Storage;
 import com.example.repocounter.exercisePackage.Exercise;
 
 import java.util.ArrayList;
@@ -36,12 +37,16 @@ public class ChooseExToWorkoutListAdapter extends RecyclerView.Adapter<ChooseExT
     @Override
     public void onBindViewHolder(@NonNull ChooseExToWorkoutViewHolder holder, int position) {
         holder.chooseExerciseToWorkoutTextView.setText(exercises.get(position).getExerciseName());
+
         holder.chooseExerciseToWorkoutTextView.setOnClickListener(view -> {
+
+            Storage.getInstance().setExerciseCarrier(exercises.get(position));
             Intent intent = new Intent(context, WorkoutEditActivity.class);
-            intent.putExtra("key", exercises.get(position));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
+
+
     }
 
     @Override

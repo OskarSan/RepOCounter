@@ -31,6 +31,25 @@ public class Storage {
 
     ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
     ArrayList<Workout> workoutArrayList = new ArrayList<>();
+    Exercise exerciseCarrier = null;
+    Workout workoutCarrier = null;
+
+    public void setExerciseCarrier(Exercise ex){
+        this.exerciseCarrier = ex;
+    }
+
+    public void setWorkoutCarrier(Workout workout){
+        this.workoutCarrier = workout;
+    }
+
+    public Exercise getExerciseCarrier(){
+        return exerciseCarrier;
+    }
+
+    public Workout getWorkoutCarrier(){
+        return workoutCarrier;
+    }
+
 
     private Integer exerciseID = 0, workoutID = 0;
 
