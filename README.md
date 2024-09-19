@@ -1,7 +1,7 @@
 TODO:
 
 adding exercises to workouts
-  - RecyclerView editing to be able to add exercises
+  - fix the issue in WorkoutEditActivitys if else statements
 
 Starting the workout
 
