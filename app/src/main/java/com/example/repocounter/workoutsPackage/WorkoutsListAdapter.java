@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
+import com.example.repocounter.activeWorkout.activeWorkoutActivity;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class WorkoutsListAdapter extends RecyclerView.Adapter<WorkoutsViewHolder
         holder.workoutNameTextView.setText(workouts.get(position).getWorkoutName());
         holder.workoutEditImageView.setImageResource(R.drawable.baseline_settings_24);
         holder.workoutDeleteImageView.setImageResource(R.drawable.baseline_delete_24);
+        holder.workoutStartImageView.setImageResource(R.drawable.baseline_play_circle_24);
         holder.workoutEditImageView.setOnClickListener(view -> {
             Intent intent = new Intent(context, WorkoutEditActivity.class);
             intent.putExtra("workout", workouts.get(position));
@@ -60,6 +62,12 @@ public class WorkoutsListAdapter extends RecyclerView.Adapter<WorkoutsViewHolder
                     Toast.makeText(context, "double-tap to delete", Toast.LENGTH_SHORT).show();
                 }, 200); // 500 milliseconds delay
             }
+        });
+        holder.workoutStartImageView.setOnClickListener(view -> {
+           Intent intent = new Intent(context, activeWorkoutActivity.class);
+           intent.putExtra("workout", workouts.get(position));
+           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           context.startActivity(intent);
         });
 
     }

@@ -49,6 +49,11 @@ public class WorkoutsActivity extends AppCompatActivity {
             intent.putExtra("key", "new");
             startActivity(intent);
         });
+        Button workoutBackButton = findViewById(R.id.workoutBackButton);
+        workoutBackButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        });
 
 
 

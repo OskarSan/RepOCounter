@@ -44,6 +44,12 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/baseline_delete_24" />
+
+            <ImageView
+                android:id="@+id/workoutStartImageView"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/baseline_play_circle_24" />
         </LinearLayout>
 
     </LinearLayout>
