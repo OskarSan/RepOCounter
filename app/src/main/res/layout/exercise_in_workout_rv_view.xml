@@ -32,7 +32,7 @@
                 android:text="@string/sets" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/editSetAmountNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

@@ -30,8 +30,12 @@ public class Exercise implements Serializable {
     public Integer getWeight(){return weight;}
     public String getExerciseDescription(){return exerciseDescription;}
     public Integer getReps(){return reps;}
+    public Integer getSets(){return sets;}
 
     public void setExerciseID(String exerciseID) {
         this.exerciseID = exerciseID;
+    }
+    public void setExerciseSets(Integer sets){
+        this.sets = sets;
     }
 }

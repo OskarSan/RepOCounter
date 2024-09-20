@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.repocounter.MainActivity;
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
 import com.example.repocounter.exercisePackage.ExercisesActivity;
@@ -53,4 +54,16 @@ public class WorkoutsActivity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the activity stack
+        startActivity(intent);
+        finish(); // Finish the current activity
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.repocounter.workoutsPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -85,7 +86,20 @@ public class WorkoutEditActivity extends AppCompatActivity {
 
 
         confirmButton.setOnClickListener(view -> {
+            System.out.println(recyclerView.getChildCount() + " muksua");
             workout.setWorkoutName(workoutNameEditText.getText().toString());
+
+            ArrayList<Exercise> workoutsExercises = workout.getExercises();
+
+            for (int i = 0; i < recyclerView.getChildCount(); i++) {
+                View itemView = recyclerView.getChildAt(i);
+                EditText editSetText = itemView.findViewById(R.id.editSetAmountNumber);
+                System.out.println(editSetText.getText().getClass() + " tjaa");
+                int position = recyclerView.getChildAdapterPosition(itemView);
+                workoutsExercises.get(position).setExerciseSets(Integer.parseInt(String.valueOf(editSetText.getText())));
+
+            }
+
 
             boolean workoutExists = storage.getWorkoutArrayList().stream()
                     .anyMatch(w -> Objects.equals(w.getWorkoutID(), workout.getWorkoutID()));

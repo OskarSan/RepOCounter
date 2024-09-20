@@ -39,7 +39,7 @@
 
         <ImageView
             android:id="@+id/exerciseEditImageView"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:adjustViewBounds="false"
@@ -47,7 +47,13 @@
             android:cropToPadding="false"
             android:foregroundGravity="right"
             android:paddingRight="5dp"
-            app:srcCompat="@android:drawable/ic_menu_preferences" />
+            app:srcCompat="@drawable/baseline_settings_24" />
+
+        <ImageView
+            android:id="@+id/exerciseDeleteImageView"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/baseline_delete_24" />
 
     </LinearLayout>
 

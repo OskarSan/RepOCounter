@@ -11,11 +11,12 @@ import com.example.repocounter.R;
 
 public class WorkoutsViewHolder extends RecyclerView.ViewHolder {
     TextView workoutNameTextView;
-    ImageView workoutEditImageView;
+    ImageView workoutEditImageView, workoutDeleteImageView;
 
     public WorkoutsViewHolder(@NonNull View itemView) {
         super(itemView);
         workoutNameTextView = itemView.findViewById(R.id.workoutNameTextView);
         workoutEditImageView = itemView.findViewById(R.id.workoutEditImageView);
+        workoutDeleteImageView = itemView.findViewById(R.id.workoutDeleteImageVIew);
     }
 }

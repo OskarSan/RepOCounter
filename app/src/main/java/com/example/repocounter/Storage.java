@@ -54,13 +54,13 @@ public class Storage {
     private Integer exerciseID = 0, workoutID = 0;
 
     public void addExercise(Exercise exercise){
-        exerciseArrayList.add(exerciseID, exercise);
-        exerciseID +=1;
+        exerciseArrayList.add(exercise);
+
     }
 
     public void addWorkout(Workout workout){
-        workoutArrayList.add(workoutID, workout);
-        workoutID +=1;
+        workoutArrayList.add(workout);
+
     }
 
     public ArrayList<Exercise> getExerciseArrayList(){

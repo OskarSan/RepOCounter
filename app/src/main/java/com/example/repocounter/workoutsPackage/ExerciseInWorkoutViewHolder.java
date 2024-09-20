@@ -21,8 +21,9 @@ public class ExerciseInWorkoutViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         exerciseNameTextView = itemView.findViewById(R.id.exerciseInWorkoutNameTextView);
         setAmountTextView = itemView.findViewById(R.id.setAmountTextView);
-        editTextNumber = itemView.findViewById(R.id.editTextNumber);
+        editTextNumber = itemView.findViewById(R.id.editSetAmountNumber);
         deleteExerciseInWorkoutImageView = itemView.findViewById(R.id.deleteExerciseInWorkoutImageView);
+
 
     }
 
