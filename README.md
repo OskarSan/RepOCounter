@@ -1,11 +1,6 @@
 TODO:
 
-adding exercises to workouts
-  - make the exercise set numbers work
-
-Starting the workout
-
-ending workout
+Finishing the workout and adding the data to log
 
 statistics
 
