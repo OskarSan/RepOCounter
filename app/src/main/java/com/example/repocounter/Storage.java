@@ -31,6 +31,8 @@ public class Storage {
 
     ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
     ArrayList<Workout> workoutArrayList = new ArrayList<>();
+    ArrayList<WorkoutLogEntry> workoutLog = new ArrayList<>();
+
     Exercise exerciseCarrier = null;
     Workout workoutCarrier = null;
 
@@ -61,6 +63,10 @@ public class Storage {
     public void addWorkout(Workout workout){
         workoutArrayList.add(workout);
 
+    }
+
+    public void addWorkoutLogEntry(WorkoutLogEntry workoutLogEntry){
+        workoutLog.add(workoutLogEntry);
     }
 
     public ArrayList<Exercise> getExerciseArrayList(){

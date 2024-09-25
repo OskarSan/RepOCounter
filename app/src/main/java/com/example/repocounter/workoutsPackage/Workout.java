@@ -22,7 +22,7 @@ public class Workout implements Serializable {
         return name;
     }
 
-    public ArrayList<Exercise> getExercises(){
+    public ArrayList<Exercise> getExerciseArrayList(){
         return exercises;
     }
 

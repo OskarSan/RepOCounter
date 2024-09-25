@@ -13,7 +13,7 @@
         android:theme="@style/Theme.RepOCounter"
         tools:targetApi="31">
         <activity
-            android:name=".activeWorkout.activeWorkoutActivity"
+            android:name=".activeWorkout.ActiveWorkoutActivity"
             android:exported="false" />
         <activity
             android:name=".workoutsPackage.WorkoutEditActivity"

@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
-import com.example.repocounter.activeWorkout.activeWorkoutActivity;
+import com.example.repocounter.activeWorkout.ActiveWorkoutActivity;
 
 import java.util.ArrayList;
 
@@ -64,7 +63,7 @@ public class WorkoutsListAdapter extends RecyclerView.Adapter<WorkoutsViewHolder
             }
         });
         holder.workoutStartImageView.setOnClickListener(view -> {
-           Intent intent = new Intent(context, activeWorkoutActivity.class);
+           Intent intent = new Intent(context, ActiveWorkoutActivity.class);
            intent.putExtra("workout", workouts.get(position));
            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
            context.startActivity(intent);

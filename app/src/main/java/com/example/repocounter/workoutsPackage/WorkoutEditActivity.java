@@ -80,7 +80,7 @@ public class WorkoutEditActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.exercisesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ExerciseInWorkoutListAdapter(/*change to workouts list*/workout.getExercises(), getApplicationContext()));
+        recyclerView.setAdapter(new ExerciseInWorkoutListAdapter(/*change to workouts list*/workout.getExerciseArrayList(), getApplicationContext()));
 
 
 
@@ -89,7 +89,7 @@ public class WorkoutEditActivity extends AppCompatActivity {
             System.out.println(recyclerView.getChildCount() + " muksua");
             workout.setWorkoutName(workoutNameEditText.getText().toString());
 
-            ArrayList<Exercise> workoutsExercises = workout.getExercises();
+            ArrayList<Exercise> workoutsExercises = workout.getExerciseArrayList();
 
             for (int i = 0; i < recyclerView.getChildCount(); i++) {
                 View itemView = recyclerView.getChildAt(i);
@@ -123,7 +123,7 @@ public class WorkoutEditActivity extends AppCompatActivity {
 
         addExerciseToWorkoutButton.setOnClickListener(view -> {
             workout.setWorkoutName(workoutNameEditText.getText().toString());
-            workout.setExercises(workout.getExercises());
+            workout.setExercises(workout.getExerciseArrayList());
             System.out.println(workout.getWorkoutName());
             storage.setWorkoutCarrier(workout);
             Intent intent = new Intent(getApplicationContext(), ExercisesActivity.class);
