@@ -8,18 +8,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
+import com.example.repocounter.exercisePackage.Exercise;
+import com.example.repocounter.workoutsPackage.Workout;
 
 import java.util.ArrayList;
 import java.util.Set;
 
 public class ExerciseInActiveWorkoutLA extends RecyclerView.Adapter<ExerciseInActiveWorkoutVH>{
     private Context context;
+    private Exercise exercise;
     private Integer setAmount;
 
 
-    public ExerciseInActiveWorkoutLA(Context context, Integer setAmount) {
+    public ExerciseInActiveWorkoutLA(Context context, Exercise exercise) {
         this.context = context;
-        this.setAmount = setAmount;
+        this.exercise = exercise;
+
     }
 
     @NonNull
@@ -34,10 +38,32 @@ public class ExerciseInActiveWorkoutLA extends RecyclerView.Adapter<ExerciseInAc
         holder.editExerciseRepsTextNumber.setText("");
         holder.editNoteText.setText("");
         holder.checkBox.setChecked(false);
+
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+           if (isChecked){
+               exercise.setWeight(Integer.parseInt(holder.editExerciseWeightTextNumber.getText().toString().trim()));
+               exercise.setReps(Integer.parseInt(holder.editExerciseRepsTextNumber.getText().toString().trim()));
+               exercise.setnotes(holder.editNoteText.getText().toString().trim());
+
+               System.out.println("checked");
+
+               holder.editExerciseWeightTextNumber.setEnabled(false);
+               holder.editExerciseRepsTextNumber.setEnabled(false);
+               holder.editNoteText.setEnabled(false);
+           } else{
+               System.out.println("unchecked");
+
+               holder.editExerciseWeightTextNumber.setEnabled(true);
+               holder.editExerciseRepsTextNumber.setEnabled(true);
+               holder.editNoteText.setEnabled(true);
+           }
+        });
+
+
     }
 
     @Override
     public int getItemCount() {
-        return setAmount;
+        return exercise.getSets();
     }
 }

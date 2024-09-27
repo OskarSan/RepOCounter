@@ -31,7 +31,6 @@ public class ChooseExToWorkoutListAdapter extends RecyclerView.Adapter<ChooseExT
     public ChooseExToWorkoutViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ChooseExToWorkoutViewHolder(LayoutInflater.from(context).inflate(R.layout.choose_ex_to_workout_rv_view, parent, false));
 
-
     }
 
     @Override

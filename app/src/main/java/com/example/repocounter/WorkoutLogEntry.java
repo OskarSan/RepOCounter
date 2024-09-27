@@ -23,7 +23,15 @@ public class WorkoutLogEntry {
         }
 
     }
-
+    public LocalDate getDate(){
+        return date;
+    }
+    public Workout getWorkout(){
+        return workout;
+    }
+    public String getWorkoutLogId() {
+        return workoutLogId;
+    }
 
 
 }

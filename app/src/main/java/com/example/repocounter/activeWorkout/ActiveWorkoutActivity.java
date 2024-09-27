@@ -1,8 +1,11 @@
 package com.example.repocounter.activeWorkout;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
+import com.example.repocounter.Storage;
+import com.example.repocounter.WorkoutLogEntry;
 import com.example.repocounter.workoutsPackage.Workout;
 
 public class ActiveWorkoutActivity extends AppCompatActivity {
@@ -21,6 +26,8 @@ public class ActiveWorkoutActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView workoutNameTextView;
     private Button finishWorkoutButton;
+    private WorkoutLogEntry workoutLogEntry;
+    private int tapCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,27 @@ public class ActiveWorkoutActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ActiveWorkoutListAdapter(getApplicationContext(), workout.getExerciseArrayList()));
 
+        finishWorkoutButton = findViewById(R.id.finishWorkoutButton);
+
+        finishWorkoutButton.setOnClickListener(view -> {
+            tapCount++;
+
+            if(tapCount == 2){
+                workoutLogEntry = new WorkoutLogEntry(workout);
+                System.out.println("ekan exercises weight = "+workoutLogEntry.getWorkout().getExerciseArrayList().get(0).getWeight());
+                Storage.getInstance().addWorkoutLogEntry(workoutLogEntry);
+                Storage.getInstance().saveWorkoutLogToFile(getApplicationContext());
+
+                finish();
+                Toast.makeText(this, "Workout finished!", Toast.LENGTH_SHORT).show();
+            }else if (tapCount == 1) {
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    tapCount = 0; // Reset tap count after delay
+                    Toast.makeText(this, "double-tap to Finish workout", Toast.LENGTH_SHORT).show();
+                }, 200); //
+            }
+
+        });
 
 
 

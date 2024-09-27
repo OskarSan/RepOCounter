@@ -35,7 +35,7 @@ public class ActiveWorkoutListAdapter extends RecyclerView.Adapter<ActiveWorkout
     public void onBindViewHolder(@NonNull ActiveWorkoutViewHolder holder, int position) {
         holder.activeWorkoutExerciseNameTextView.setText(workoutExercises.get(position).getExerciseName());
         holder.exerciseInActiveWorkoutRV.setLayoutManager(new LinearLayoutManager(context));
-        holder.exerciseInActiveWorkoutRV.setAdapter(new ExerciseInActiveWorkoutLA(context, workoutExercises.get(position).getSets()));
+        holder.exerciseInActiveWorkoutRV.setAdapter(new ExerciseInActiveWorkoutLA(context, workoutExercises.get(position)));
         holder.addSetButton.setOnClickListener(view -> {
             workoutExercises.get(position).setExerciseSets(workoutExercises.get(position).getSets() + 1);
             notifyItemChanged(position);

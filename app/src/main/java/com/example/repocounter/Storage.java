@@ -162,5 +162,24 @@ public class Storage {
         }
     }
 
+    public void saveWorkoutLogToFile(Context context){
+        try {
+            ObjectOutputStream workoutLogWriter = new ObjectOutputStream(context.openFileOutput("workoutLog.ser", Context.MODE_PRIVATE));
+            workoutLogWriter.writeObject(workoutLog);
+            workoutLogWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
+    }
+
+    public void loadWorkoutLogFromFile(Context context){
+        try {
+            ObjectInputStream workoutLogReader = new ObjectInputStream(context.openFileInput("workoutLog.ser"));
+            workoutLog = (ArrayList<WorkoutLogEntry>) workoutLogReader.readObject();
+            workoutLogReader.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

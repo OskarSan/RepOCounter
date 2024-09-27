@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Exercise implements Serializable {
     protected ExerciseType exerciseType;
-    protected String exerciseName, exerciseDescription, exerciseID;
+    protected String exerciseName, exerciseDescription, exerciseID, notes;
     protected Integer reps, weight, sets;
 
     //kuvasetti
@@ -21,6 +21,7 @@ public class Exercise implements Serializable {
         this.reps = reps;
         this.weight = weight;
         this.sets = 0;
+        this.notes = "";
     }
 
 
@@ -31,6 +32,18 @@ public class Exercise implements Serializable {
     public String getExerciseDescription(){return exerciseDescription;}
     public Integer getReps(){return reps;}
     public Integer getSets(){return sets;}
+
+    public void setWeight(int weight){
+      this.weight = weight;
+    };
+
+    public void setReps(int reps){
+        this.reps = reps;
+    };
+
+    public void setnotes(String notes){
+        this.notes = notes;
+    }
 
     public void setExerciseID(String exerciseID) {
         this.exerciseID = exerciseID;
