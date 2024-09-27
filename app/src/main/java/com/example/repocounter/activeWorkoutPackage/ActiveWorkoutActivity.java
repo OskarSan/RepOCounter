@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
-import com.example.repocounter.WorkoutLogEntry;
+import com.example.repocounter.statisticsPackage.WorkoutLogEntry;
 import com.example.repocounter.workoutsPackage.Workout;
 
 public class ActiveWorkoutActivity extends AppCompatActivity {

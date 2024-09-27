@@ -22,7 +22,7 @@
             android:name=".exercisePackage.ExerciseEditActivity"
             android:exported="false" />
         <activity
-            android:name=".StatisticsActivity"
+            android:name=".statisticsPackage.StatisticsActivity"
             android:exported="false" />
         <activity
             android:name=".exercisePackage.ExercisesActivity"

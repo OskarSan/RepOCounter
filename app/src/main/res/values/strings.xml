@@ -9,7 +9,7 @@
     <string name="workoutName">Workout name</string>
     <string name="addExercise">Add exercise</string>"
     <string name="finish">Finish</string>"
-
+    <string name="workoutLog">Workout log</string>
 
     <string-array name="routines">
         <item>push</item>

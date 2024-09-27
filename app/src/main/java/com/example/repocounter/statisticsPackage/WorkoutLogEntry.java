@@ -1,4 +1,4 @@
-package com.example.repocounter;
+package com.example.repocounter.statisticsPackage;
 
 import android.os.Build;
 

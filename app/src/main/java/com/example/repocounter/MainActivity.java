@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.repocounter.exercisePackage.ExercisesActivity;
+import com.example.repocounter.statisticsPackage.StatisticsActivity;
 import com.example.repocounter.workoutsPackage.WorkoutsActivity;
 
 public class MainActivity extends AppCompatActivity {

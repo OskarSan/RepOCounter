@@ -1,7 +1,6 @@
-package com.example.repocounter;
+package com.example.repocounter.statisticsPackage;
 
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +8,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.repocounter.R;
+import com.example.repocounter.Storage;
+
+import java.util.ArrayList;
+
 public class StatisticsActivity extends AppCompatActivity {
 
+
+    private ArrayList<WorkoutLogEntry> workoutLog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +27,10 @@ public class StatisticsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Storage.getInstance().loadWorkoutLogFromFile(this);
+
+        workoutLog = Storage.getInstance().getWorkoutLog();
 
 
 

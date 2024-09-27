@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.repocounter.exercisePackage.Exercise;
 import com.example.repocounter.exercisePackage.ExerciseType;
+import com.example.repocounter.statisticsPackage.WorkoutLogEntry;
 import com.example.repocounter.workoutsPackage.Workout;
 
 import java.io.ObjectInputStream;
@@ -76,6 +77,9 @@ public class Storage {
     public ArrayList<Workout> getWorkoutArrayList(){
         return workoutArrayList;
     }
+
+    public ArrayList<WorkoutLogEntry> getWorkoutLog(){return workoutLog;}
+
 
     public Exercise findExerciseById(String id){
         for(Exercise exercise : exerciseArrayList){
