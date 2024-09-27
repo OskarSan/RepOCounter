@@ -1,4 +1,4 @@
-package com.example.repocounter.activeWorkout;
+package com.example.repocounter.activeWorkoutPackage;
 
 import android.view.View;
 import android.widget.Button;

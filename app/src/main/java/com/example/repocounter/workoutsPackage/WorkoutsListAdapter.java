@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
-import com.example.repocounter.activeWorkout.ActiveWorkoutActivity;
+import com.example.repocounter.activeWorkoutPackage.ActiveWorkoutActivity;
 
 import java.util.ArrayList;
 

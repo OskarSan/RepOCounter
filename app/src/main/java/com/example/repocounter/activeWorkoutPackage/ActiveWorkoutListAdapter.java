@@ -1,4 +1,4 @@
-package com.example.repocounter.activeWorkout;
+package com.example.repocounter.activeWorkoutPackage;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
 import com.example.repocounter.exercisePackage.Exercise;
-import com.example.repocounter.workoutsPackage.Workout;
 
 import java.util.ArrayList;
 

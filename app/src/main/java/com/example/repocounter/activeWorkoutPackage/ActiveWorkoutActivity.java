@@ -1,4 +1,4 @@
-package com.example.repocounter.activeWorkout;
+package com.example.repocounter.activeWorkoutPackage;
 
 import android.os.Bundle;
 import android.os.Handler;
