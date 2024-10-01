@@ -1,22 +1,38 @@
 package com.example.repocounter.statisticsPackage;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.widget.CalendarView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.repocounter.MainActivity;
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
+import com.example.repocounter.exercisePackage.Exercise;
+import com.example.repocounter.workoutsPackage.Workout;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class StatisticsActivity extends AppCompatActivity {
 
 
-    private ArrayList<WorkoutLogEntry> workoutLog;
+
+    private HashMap<LocalDate, WorkoutLogEntry> workoutLog;
+    private CalendarView logCalendarView;
+    private Calendar calendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,5 +50,76 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
 
+        logCalendarView = findViewById(R.id.logCalendarView);
+        calendar = calendar.getInstance();
+        long currentMillis = calendar.getTimeInMillis();
+
+        logCalendarView.setDate(currentMillis);
+
+        logCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth) {
+                String dateString = String.format("%d/%d/%d", dayOfMonth, month + 1, year);
+                //Toast.makeText(StatisticsActivity.this, dateString, Toast.LENGTH_SHORT).show();
+
+                LocalDate selectedDate = LocalDate.of(year, month+1, dayOfMonth);
+                WorkoutLogEntry logEntry = workoutLog.get(selectedDate);
+
+                if (logEntry != null) {
+                    Dialog dialog = new Dialog(StatisticsActivity.this);
+                    dialog.setContentView(R.layout.workout_details_dialog);
+
+                    TextView workoutNameTextView = dialog.findViewById(R.id.logWorkoutNameTV);
+
+                    TextView workoutExercisesTV = dialog.findViewById(R.id.logWorkoutExercisesTV);
+
+                    ArrayList<Exercise> exerciseArrayList = logEntry.getWorkout().getExerciseArrayList();
+                    StringBuilder exerciseString = new StringBuilder();
+                    for (Exercise exercise : exerciseArrayList) {
+
+
+                        exerciseString.append(exercise.getSets())
+                                .append("x ")
+                                .append(exercise.getExerciseName())
+                                .append("\n");
+
+                        // Add a newline after each exercise
+                    }
+                    String allExercises = exerciseString.toString();
+                    workoutNameTextView.setText(logEntry.getWorkout().getWorkoutName());
+                    workoutExercisesTV.setText(allExercises);
+
+                    dialog.show();
+
+                } else {
+                    // No WorkoutLogEntry found for the selected date
+                    // ...
+                    System.out.println("no workout");
+                }
+
+
+            }
+        });
+
     }
+
+
+    /*
+    public void getDate(){
+        long date = logCalendarView.getDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
+        calendar.setTimeInMillis(date);
+        String selectedDate = simpleDateFormat.format(calendar.getTime());
+        Toast.makeText(this, selectedDate, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void setDate(int day, int month, int year){
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month-1);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        long milli = calendar.getTimeInMillis();
+        logCalendarView.setDate(milli);
+    }
+    */
 }

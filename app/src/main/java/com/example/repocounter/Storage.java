@@ -9,7 +9,9 @@ import com.example.repocounter.workoutsPackage.Workout;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class Storage {
@@ -32,7 +34,7 @@ public class Storage {
 
     ArrayList<Exercise> exerciseArrayList = new ArrayList<>();
     ArrayList<Workout> workoutArrayList = new ArrayList<>();
-    ArrayList<WorkoutLogEntry> workoutLog = new ArrayList<>();
+    HashMap<LocalDate, WorkoutLogEntry> workoutLog = new HashMap<>();
 
     Exercise exerciseCarrier = null;
     Workout workoutCarrier = null;
@@ -67,7 +69,9 @@ public class Storage {
     }
 
     public void addWorkoutLogEntry(WorkoutLogEntry workoutLogEntry){
-        workoutLog.add(workoutLogEntry);
+
+        workoutLog.put(workoutLogEntry.getDate(), workoutLogEntry);
+        System.out.println(workoutLog.size());
     }
 
     public ArrayList<Exercise> getExerciseArrayList(){
@@ -78,7 +82,7 @@ public class Storage {
         return workoutArrayList;
     }
 
-    public ArrayList<WorkoutLogEntry> getWorkoutLog(){return workoutLog;}
+    public HashMap<LocalDate, WorkoutLogEntry> getWorkoutLog(){return workoutLog;}
 
 
     public Exercise findExerciseById(String id){
@@ -180,7 +184,7 @@ public class Storage {
     public void loadWorkoutLogFromFile(Context context){
         try {
             ObjectInputStream workoutLogReader = new ObjectInputStream(context.openFileInput("workoutLog.ser"));
-            workoutLog = (ArrayList<WorkoutLogEntry>) workoutLogReader.readObject();
+            workoutLog = (HashMap<LocalDate, WorkoutLogEntry>) workoutLogReader.readObject();
             workoutLogReader.close();
         }catch (Exception e){
             e.printStackTrace();

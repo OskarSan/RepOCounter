@@ -4,10 +4,11 @@ import android.os.Build;
 
 import com.example.repocounter.workoutsPackage.Workout;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class WorkoutLogEntry {
+public class WorkoutLogEntry  implements java.io.Serializable {
 
     LocalDate date;
     Workout workout;
