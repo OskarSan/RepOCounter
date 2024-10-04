@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.repocounter.chartsPackage.chartsActivity;
 import com.example.repocounter.exercisePackage.ExercisesActivity;
 import com.example.repocounter.statisticsPackage.StatisticsActivity;
 import com.example.repocounter.workoutsPackage.WorkoutsActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button routinesActivityButton = (Button) findViewById(R.id.routines_button);
         Button exercisesActivityButton = (Button) findViewById(R.id.exercises_button);
         Button statistcsActivityButton = (Button) findViewById(R.id.statistics_button);
+        Button chartsActivityButton = (Button) findViewById(R.id.charts_button);
 
         Storage.getInstance().saveExercisesToFile(getApplicationContext());
         Storage.getInstance().loadExercisesFromFile(getApplicationContext());
@@ -61,7 +63,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+        chartsActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent startIntent = new Intent(getApplicationContext(), chartsActivity.class);
+                startActivity(startIntent);
+            }
+        });
 
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Storage.getInstance().saveExercisesToFile(getApplicationContext());
+        Storage.getInstance().saveWorkoutsToFile(getApplicationContext());
+        Storage.getInstance().saveWorkoutLogToFile(getApplicationContext());
 
     }
 }

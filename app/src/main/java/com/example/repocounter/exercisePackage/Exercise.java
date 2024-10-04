@@ -51,4 +51,7 @@ public class Exercise implements Serializable {
     public void setExerciseSets(Integer sets){
         this.sets = sets;
     }
+
+
+
 }

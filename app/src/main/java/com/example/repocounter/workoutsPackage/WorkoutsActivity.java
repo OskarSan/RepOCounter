@@ -69,6 +69,10 @@ public class WorkoutsActivity extends AppCompatActivity {
         startActivity(intent);
         finish(); // Finish the current activity
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Storage.getInstance().saveWorkoutsToFile(getApplicationContext());
+    }
 
 }

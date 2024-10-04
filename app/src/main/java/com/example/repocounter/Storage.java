@@ -20,6 +20,7 @@ public class Storage {
     public static Storage getInstance(){
         if(storage == null){
             storage = new Storage();
+            /*
             storage.addExercise(new Exercise(ExerciseType.PUSH, "pena", "pena", 10, 10 ));
             storage.addExercise(new Exercise(ExerciseType.PULL, "vetoo", "vetoilu", 10, 10 ));
             storage.addExercise(new Exercise(ExerciseType.LEGS, "kykky", "kykky", 10, 10 ));
@@ -27,7 +28,7 @@ public class Storage {
 
             storage.addWorkout(new Workout("test", storage.getExerciseArrayList()));
             storage.addWorkout(new Workout("test2", storage.getExerciseArrayList()));
-
+            */
         }
         return storage;
     }
@@ -133,6 +134,7 @@ public class Storage {
     public void saveExercisesToFile(Context context){
         try {
             ObjectOutputStream exerciseWriter = new ObjectOutputStream(context.openFileOutput("exercises.ser", Context.MODE_PRIVATE));
+            System.out.println("savinge ex");
             exerciseWriter.writeObject(exerciseArrayList);
             exerciseWriter.close();
         } catch (Exception e) {
@@ -143,6 +145,7 @@ public class Storage {
     public void loadExercisesFromFile(Context context){
         try {
             ObjectInputStream exerciseReader = new ObjectInputStream(context.openFileInput("exercises.ser"));
+
             exerciseArrayList = (ArrayList<Exercise>) exerciseReader.readObject();
             exerciseReader.close();
         } catch (Exception e) {
@@ -153,6 +156,7 @@ public class Storage {
     public void saveWorkoutsToFile(Context context){
         try {
             ObjectOutputStream workoutWriter = new ObjectOutputStream(context.openFileOutput("workouts.ser", Context.MODE_PRIVATE));
+            System.out.println("saving workouts");
             workoutWriter.writeObject(workoutArrayList);
             workoutWriter.close();
         }catch (Exception e){
@@ -173,6 +177,7 @@ public class Storage {
     public void saveWorkoutLogToFile(Context context){
         try {
             ObjectOutputStream workoutLogWriter = new ObjectOutputStream(context.openFileOutput("workoutLog.ser", Context.MODE_PRIVATE));
+            System.out.println("saving log");
             workoutLogWriter.writeObject(workoutLog);
             workoutLogWriter.close();
         }catch (Exception e){

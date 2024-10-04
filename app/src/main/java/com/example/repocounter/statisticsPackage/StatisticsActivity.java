@@ -1,10 +1,11 @@
 package com.example.repocounter.statisticsPackage;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,18 +14,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.repocounter.MainActivity;
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
 import com.example.repocounter.exercisePackage.Exercise;
-import com.example.repocounter.workoutsPackage.Workout;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Locale;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -33,6 +30,9 @@ public class StatisticsActivity extends AppCompatActivity {
     private HashMap<LocalDate, WorkoutLogEntry> workoutLog;
     private CalendarView logCalendarView;
     private Calendar calendar;
+    private Button backButton;
+
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +49,14 @@ public class StatisticsActivity extends AppCompatActivity {
         workoutLog = Storage.getInstance().getWorkoutLog();
 
 
-
+        backButton = findViewById(R.id.LogBackButton);
         logCalendarView = findViewById(R.id.logCalendarView);
         calendar = calendar.getInstance();
         long currentMillis = calendar.getTimeInMillis();
 
         logCalendarView.setDate(currentMillis);
+
+
 
         logCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -62,7 +64,10 @@ public class StatisticsActivity extends AppCompatActivity {
                 String dateString = String.format("%d/%d/%d", dayOfMonth, month + 1, year);
                 //Toast.makeText(StatisticsActivity.this, dateString, Toast.LENGTH_SHORT).show();
 
-                LocalDate selectedDate = LocalDate.of(year, month+1, dayOfMonth);
+                LocalDate selectedDate = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O    ) {
+                    selectedDate = LocalDate.of(year, month+1, dayOfMonth);
+                }
                 WorkoutLogEntry logEntry = workoutLog.get(selectedDate);
 
                 if (logEntry != null) {
@@ -99,6 +104,10 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
             }
+        });
+
+        backButton.setOnClickListener(view -> {
+            finish();
         });
 
     }

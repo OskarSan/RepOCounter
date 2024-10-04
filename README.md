@@ -1,6 +1,8 @@
 TODO:
 
-in statistics, show each set separately, major rewriting required
 
+storage is scuffed
+
+Make better calendar
 charts
 

@@ -45,7 +45,6 @@ public class ActiveWorkoutActivity extends AppCompatActivity {
         workoutNameTextView.setText(workout.getWorkoutName());
 
         recyclerView = findViewById(R.id.activeWorkoutRV);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new ActiveWorkoutListAdapter(getApplicationContext(), workout.getExerciseArrayList()));
 
