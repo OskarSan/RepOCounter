@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
 import com.example.repocounter.exercisePackage.Exercise;
+import com.example.repocounter.exercisePackage.Set;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -79,16 +80,26 @@ public class StatisticsActivity extends AppCompatActivity {
                     TextView workoutExercisesTV = dialog.findViewById(R.id.logWorkoutExercisesTV);
 
                     ArrayList<Exercise> exerciseArrayList = logEntry.getWorkout().getExerciseArrayList();
+
                     StringBuilder exerciseString = new StringBuilder();
                     for (Exercise exercise : exerciseArrayList) {
 
+                        ArrayList<Set> sets = exercise.getSetList();
 
-                        exerciseString.append(exercise.getSets())
-                                .append("x ")
+                        exerciseString
                                 .append(exercise.getExerciseName())
-                                .append("\n");
+                                .append(": \n");
 
                         // Add a newline after each exercise
+                        for(Set set : sets){
+                            exerciseString
+                                    .append(set.getWeight())
+                                    .append("kg, ")
+                                    .append(set.getReps())
+                                    .append(" Reps\n");
+                        }
+                        exerciseString.append("\n");
+
                     }
                     String allExercises = exerciseString.toString();
                     workoutNameTextView.setText(logEntry.getWorkout().getWorkoutName());

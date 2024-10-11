@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
-import com.example.repocounter.Storage;
 import com.example.repocounter.exercisePackage.Exercise;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class ExerciseInWorkoutListAdapter extends RecyclerView.Adapter<ExerciseI
     @Override
     public void onBindViewHolder(@NonNull ExerciseInWorkoutViewHolder holder, int position) {
         holder.exerciseNameTextView.setText(exercises.get(position).getExerciseName());
-        holder.editTextNumber.setText(exercises.get(position).getSets().toString());
+        holder.editTextNumber.setText(exercises.get(position).getSetAmount().toString());
         holder.deleteExerciseInWorkoutImageView.setImageResource(R.drawable.baseline_delete_24);
         holder.deleteExerciseInWorkoutImageView.setOnClickListener(View ->{
             System.out.println(exercises.get(position).getExerciseName());

@@ -10,18 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.repocounter.R;
 import com.example.repocounter.exercisePackage.Exercise;
+import com.example.repocounter.workoutsPackage.Workout;
 
 import java.util.ArrayList;
 
 public class ActiveWorkoutListAdapter extends RecyclerView.Adapter<ActiveWorkoutViewHolder> {
     private Context context;
     private ArrayList<Exercise> workoutExercises = new ArrayList<>();
+    private Workout workout;
 
 
-
-    public ActiveWorkoutListAdapter(Context context, ArrayList<Exercise> exercises) {
+    public ActiveWorkoutListAdapter(Context context, ArrayList<Exercise> exercises, Workout workout) {
         this.context = context;
         this.workoutExercises = exercises;
+        this.workout = workout;
     }
 
     @NonNull
@@ -34,9 +36,9 @@ public class ActiveWorkoutListAdapter extends RecyclerView.Adapter<ActiveWorkout
     public void onBindViewHolder(@NonNull ActiveWorkoutViewHolder holder, int position) {
         holder.activeWorkoutExerciseNameTextView.setText(workoutExercises.get(position).getExerciseName());
         holder.exerciseInActiveWorkoutRV.setLayoutManager(new LinearLayoutManager(context));
-        holder.exerciseInActiveWorkoutRV.setAdapter(new ExerciseInActiveWorkoutLA(context, workoutExercises.get(position)));
+        holder.exerciseInActiveWorkoutRV.setAdapter(new ExerciseInActiveWorkoutLA(context, workoutExercises.get(position), workout));
         holder.addSetButton.setOnClickListener(view -> {
-            workoutExercises.get(position).setExerciseSets(workoutExercises.get(position).getSets() + 1);
+            workoutExercises.get(position).setExerciseSets(workoutExercises.get(position).getSetAmount() + 1);
             notifyItemChanged(position);
         });
     }

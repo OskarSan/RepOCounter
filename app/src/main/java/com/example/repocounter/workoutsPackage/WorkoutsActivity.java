@@ -51,6 +51,7 @@ public class WorkoutsActivity extends AppCompatActivity {
         });
         Button workoutBackButton = findViewById(R.id.workoutBackButton);
         workoutBackButton.setOnClickListener(view -> {
+            storage.saveWorkoutsToFile(getApplicationContext());
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         });
@@ -64,6 +65,7 @@ public class WorkoutsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        storage.saveWorkoutsToFile(getApplicationContext());
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the activity stack
         startActivity(intent);
@@ -71,8 +73,9 @@ public class WorkoutsActivity extends AppCompatActivity {
     }
     @Override
     protected void onDestroy() {
+        storage.saveWorkoutsToFile(getApplicationContext());
         super.onDestroy();
-        Storage.getInstance().saveWorkoutsToFile(getApplicationContext());
+
     }
 
 }

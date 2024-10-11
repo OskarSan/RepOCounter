@@ -29,6 +29,7 @@ public class Storage {
             storage.addWorkout(new Workout("test", storage.getExerciseArrayList()));
             storage.addWorkout(new Workout("test2", storage.getExerciseArrayList()));
             */
+
         }
         return storage;
     }
@@ -145,7 +146,7 @@ public class Storage {
     public void loadExercisesFromFile(Context context){
         try {
             ObjectInputStream exerciseReader = new ObjectInputStream(context.openFileInput("exercises.ser"));
-
+            System.out.println("exercies loaded");
             exerciseArrayList = (ArrayList<Exercise>) exerciseReader.readObject();
             exerciseReader.close();
         } catch (Exception e) {
@@ -167,6 +168,7 @@ public class Storage {
     public void loadWorkoutsFromFile(Context context){
         try {
             ObjectInputStream workoutReader = new ObjectInputStream(context.openFileInput("workouts.ser"));
+            System.out.println("Workouts loaded");
             workoutArrayList = (ArrayList<Workout>) workoutReader.readObject();
             workoutReader.close();
         }catch (Exception e){
@@ -189,6 +191,7 @@ public class Storage {
     public void loadWorkoutLogFromFile(Context context){
         try {
             ObjectInputStream workoutLogReader = new ObjectInputStream(context.openFileInput("workoutLog.ser"));
+            System.out.println("log loaded");
             workoutLog = (HashMap<LocalDate, WorkoutLogEntry>) workoutLogReader.readObject();
             workoutLogReader.close();
         }catch (Exception e){

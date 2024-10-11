@@ -46,7 +46,7 @@ public class ActiveWorkoutActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.activeWorkoutRV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new ActiveWorkoutListAdapter(getApplicationContext(), workout.getExerciseArrayList()));
+        recyclerView.setAdapter(new ActiveWorkoutListAdapter(getApplicationContext(), workout.getExerciseArrayList(), workout));
 
         finishWorkoutButton = findViewById(R.id.finishWorkoutButton);
 
