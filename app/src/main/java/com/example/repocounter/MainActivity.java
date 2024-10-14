@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.repocounter.chartsPackage.chartsActivity;
+import com.example.repocounter.chartsPackage.ChartsActivity;
 import com.example.repocounter.exercisePackage.ExercisesActivity;
 import com.example.repocounter.statisticsPackage.StatisticsActivity;
 import com.example.repocounter.workoutsPackage.WorkoutsActivity;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         chartsActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent startIntent = new Intent(getApplicationContext(), chartsActivity.class);
+                Intent startIntent = new Intent(getApplicationContext(), ChartsActivity.class);
                 startActivity(startIntent);
             }
         });
