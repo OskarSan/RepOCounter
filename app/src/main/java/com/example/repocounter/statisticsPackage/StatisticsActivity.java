@@ -20,6 +20,7 @@ import com.example.repocounter.exercisePackage.Exercise;
 import com.example.repocounter.exercisePackage.Set;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
 
-    private HashMap<LocalDate, WorkoutLogEntry> workoutLog;
+    private HashMap<LocalDateTime, WorkoutLogEntry> workoutLog;
     private CalendarView logCalendarView;
     private Calendar calendar;
     private Button backButton;

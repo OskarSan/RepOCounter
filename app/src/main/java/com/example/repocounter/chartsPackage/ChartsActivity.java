@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.repocounter.R;
 import com.example.repocounter.Storage;
 
-public class chartsActivity extends AppCompatActivity {
+public class ChartsActivity extends AppCompatActivity {
 
 
     private Storage storage;

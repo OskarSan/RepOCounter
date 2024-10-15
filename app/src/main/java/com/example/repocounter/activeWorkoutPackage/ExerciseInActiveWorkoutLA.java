@@ -15,6 +15,7 @@ import com.example.repocounter.statisticsPackage.WorkoutLogEntry;
 import com.example.repocounter.workoutsPackage.Workout;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
@@ -44,7 +45,7 @@ public class ExerciseInActiveWorkoutLA extends RecyclerView.Adapter<ExerciseInAc
 
 
         Set set = exercise.getSetList().get(position);
-        HashMap<LocalDate, WorkoutLogEntry>  workoutLog = Storage.getInstance().getWorkoutLog();
+        HashMap<LocalDateTime, WorkoutLogEntry>  workoutLog = Storage.getInstance().getWorkoutLog();
         ArrayList<Exercise> prevExercises = null;
 
         ArrayList<WorkoutLogEntry> entries = new ArrayList<>(workoutLog.values()); // Get values as ArrayList
