@@ -1,6 +1,7 @@
 package com.example.repocounter.chartsPackage;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -33,6 +34,7 @@ public class ExerciseChartActivity extends AppCompatActivity {
     private HashMap<LocalDateTime, WorkoutLogEntry> workoutLog;
     private WorkoutLogEntry logEntry;
     private ArrayList<Exercise> exercises = new ArrayList<>();
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,11 @@ public class ExerciseChartActivity extends AppCompatActivity {
 
         storage.loadWorkoutLogFromFile(getApplicationContext());
         workoutLog = storage.getWorkoutLog();
+
+        backButton = findViewById(R.id.exerciseChartBackButton);
+        backButton.setOnClickListener(view -> {
+            finish();
+        });
 
         exerciseTextView = findViewById(R.id.chartedExerciseTextView);
         exercise = (Exercise) getIntent().getSerializableExtra("key");

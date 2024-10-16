@@ -48,18 +48,29 @@ public class WorkoutsListAdapter extends RecyclerView.Adapter<WorkoutsViewHolder
 
         holder.workoutDeleteImageView.setOnClickListener(View->{
             tapCount++;
+            Handler handler = new Handler(Looper.getMainLooper());
+
+            // Create a Runnable for the delayed action (Toast)
+            Runnable showToastRunnable = () -> {
+                if (tapCount == 1) { // Only show if it's still a single tap
+                    Toast.makeText(context, "double-tap to delete", Toast.LENGTH_SHORT).show();
+                }
+                tapCount = 0; // Reset tap count after showing the message
+            };
+
             if (tapCount == 2) {
+                // Cancel the pending toast since the user double-tapped
+                handler.removeCallbacks(showToastRunnable);
+
+                // Proceed to remove the workout
                 workouts.remove(position);
                 notifyItemRemoved(position);
                 Storage.getInstance().saveWorkoutsToFile(context);
+
                 tapCount = 0; // Reset tap count
-
             } else if (tapCount == 1) {
-
-                new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    tapCount = 0; // Reset tap count after delay
-                    Toast.makeText(context, "double-tap to delete", Toast.LENGTH_SHORT).show();
-                }, 200); // 500 milliseconds delay
+                // Post the runnable with a delay
+                handler.postDelayed(showToastRunnable, 200); // 500 milliseconds delay
             }
         });
         holder.workoutStartImageView.setOnClickListener(view -> {

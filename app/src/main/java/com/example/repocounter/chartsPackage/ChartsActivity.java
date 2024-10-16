@@ -1,6 +1,7 @@
 package com.example.repocounter.chartsPackage;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class ChartsActivity extends AppCompatActivity {
 
     private Storage storage;
     private RecyclerView chartsRecyclerView;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,13 @@ public class ChartsActivity extends AppCompatActivity {
         chartsRecyclerView = findViewById(R.id.chartsRecyclerView);
         chartsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         chartsRecyclerView.setAdapter(new chartableExerciseListAdapter(getApplicationContext(), storage.getExerciseArrayList(), storage.getWorkoutLog()));
+
+        backButton = findViewById(R.id.chartsBackButton);
+        backButton.setOnClickListener(view -> {
+            storage.saveExercisesToFile(getApplicationContext());
+            finish();
+        });
+
 
     }
 

@@ -41,17 +41,6 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/startWorkoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Start Workout"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addWorkoutButton"
-        app:layout_constraintStart_toEndOf="@+id/workoutBackButton" />
-
-    <Button
         android:id="@+id/workoutBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

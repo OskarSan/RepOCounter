@@ -52,22 +52,35 @@ public class ActiveWorkoutActivity extends AppCompatActivity {
 
         finishWorkoutButton.setOnClickListener(view -> {
             tapCount++;
+            Handler handler = new Handler(Looper.getMainLooper());
 
-            if(tapCount == 2){
+            // Create a Runnable for the delayed action (Toast)
+            Runnable showToastRunnable = () -> {
+                if (tapCount == 1) { // Only show if it's still a single tap
+                    Toast.makeText(this, "double-tap to Finish workout", Toast.LENGTH_SHORT).show();
+                }
+                tapCount = 0; // Reset tap count after showing the message
+            };
+
+            if (tapCount == 2) {
+                // Cancel the pending Toast if the second tap happened
+                handler.removeCallbacks(showToastRunnable);
+
+                // Proceed to finish the workout
                 workoutLogEntry = new WorkoutLogEntry(workout);
-                System.out.println("ekan exercises weight = "+workoutLogEntry.getWorkout().getExerciseArrayList().get(0).getWeight());
+                System.out.println("ekan exercises weight = " + workoutLogEntry.getWorkout().getExerciseArrayList().get(0).getWeight());
                 Storage.getInstance().addWorkoutLogEntry(workoutLogEntry);
                 Storage.getInstance().saveWorkoutLogToFile(getApplicationContext());
 
+                // Finish the activity and show the completion Toast
                 finish();
                 Toast.makeText(this, "Workout finished!", Toast.LENGTH_SHORT).show();
-            }else if (tapCount == 1) {
-                new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    tapCount = 0; // Reset tap count after delay
-                    Toast.makeText(this, "double-tap to Finish workout", Toast.LENGTH_SHORT).show();
-                }, 200); //
-            }
 
+                tapCount = 0; // Reset tap count after finishing
+            } else if (tapCount == 1) {
+                // Post the Runnable with a delay
+                handler.postDelayed(showToastRunnable, 200); // 500 milliseconds delay
+            }
         });
 
 
