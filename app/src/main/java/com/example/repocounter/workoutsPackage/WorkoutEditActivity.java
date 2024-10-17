@@ -45,7 +45,7 @@ public class WorkoutEditActivity extends AppCompatActivity {
         EditText workoutNameEditText = findViewById(R.id.setWorkoutNameEditText);
         Button confirmButton = findViewById(R.id.workoutEditConfirmButton);
         Button addExerciseToWorkoutButton = findViewById(R.id.addExerciseToWorkoutButton);
-
+        Button workoutEditBackButton = findViewById(R.id.workoutEditBackButton);
 
         //TODO: FIX THIS SHIT
         if(Objects.equals(getIntent().getStringExtra("key"), "new")){
@@ -133,7 +133,11 @@ public class WorkoutEditActivity extends AppCompatActivity {
         });
 
 
+        workoutEditBackButton.setOnClickListener(view -> {
+            storage.saveWorkoutsToFile(getApplicationContext());
+            finish();
 
+        });
 
 
     }

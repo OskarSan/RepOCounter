@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         Button statistcsActivityButton = (Button) findViewById(R.id.statistics_button);
         Button chartsActivityButton = (Button) findViewById(R.id.charts_button);
 
+        /* remove comments to save empty files and erase previous data
+        Storage.getInstance().saveExercisesToFile(getApplicationContext());
+        Storage.getInstance().saveWorkoutsToFile(getApplicationContext());
+        Storage.getInstance().saveWorkoutLogToFile(getApplicationContext());
+        */
+
         Storage.getInstance().loadExercisesFromFile(getApplicationContext());
         Storage.getInstance().loadWorkoutsFromFile(getApplicationContext());
         Storage.getInstance().loadWorkoutLogFromFile(getApplicationContext());

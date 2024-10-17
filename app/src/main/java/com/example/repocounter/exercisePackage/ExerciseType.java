@@ -1,8 +1,11 @@
 package com.example.repocounter.exercisePackage;
 
 public enum ExerciseType {
-    PUSH("Push"),
-    PULL("Pull"),
+    BICEPS("Biceps"),
+    TRICEPS("Triceps"),
+    SHOULDERS("Shoulders"),
+    CHEST("Chest"),
+    BACK("Back"),
     LEGS("Legs");
 
     private String displayName;

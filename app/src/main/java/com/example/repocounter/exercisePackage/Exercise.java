@@ -20,8 +20,8 @@ public class Exercise implements Serializable {
         this.exerciseType = type;
         this.exerciseName = name;
         this.exerciseDescription = description;
-        this.reps = reps;
-        this.weight = weight;
+        this.reps = 0;
+        this.weight = 0;
         this.setAmount = 0;
         this.setList = new ArrayList<>();
         this.notes = "";

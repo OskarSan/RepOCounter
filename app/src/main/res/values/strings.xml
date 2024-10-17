@@ -15,9 +15,13 @@
 
 
     <string-array name="routines">
-        <item>push</item>
-        <item>pull</item>
-        <item>legs</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Shoulders</item>
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Legs</item>
+
     </string-array>
 
 

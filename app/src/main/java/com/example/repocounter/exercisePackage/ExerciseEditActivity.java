@@ -38,8 +38,8 @@ public class ExerciseEditActivity extends AppCompatActivity {
         TextView titleText = findViewById(R.id.editCreateTextView);
         EditText exerciseNameEditText = findViewById(R.id.exerciseNameEditText);
         EditText exerciseDescriptionEditText = findViewById(R.id.exerciseDescriptionEditText);
-        EditText editWeight = findViewById(R.id.editWeight);
-        EditText editReps = findViewById(R.id.editReps);
+        //EditText editWeight = findViewById(R.id.editWeight);
+        //EditText editReps = findViewById(R.id.editReps);
         Button confirmButton = findViewById(R.id.confirmButton);
 
 
@@ -59,8 +59,8 @@ public class ExerciseEditActivity extends AppCompatActivity {
             titleText.setText("Create new exercise");
             exerciseNameEditText.setHint("Exercise name");
             exerciseDescriptionEditText.setHint("Exercise description");
-            editWeight.setHint("Weight (kg)");
-            editReps.setHint("Reps");
+            //editWeight.setHint("Weight (kg)");
+            //editReps.setHint("Reps");
 
         }else{
             titleText.setText("Edit exercise");
@@ -69,8 +69,8 @@ public class ExerciseEditActivity extends AppCompatActivity {
             spinner.setSelection(exercise.getExerciseType().ordinal());
             exerciseNameEditText.setText(exercise.getExerciseName());
             exerciseDescriptionEditText.setText(exercise.getExerciseDescription());
-            editWeight.setText(exercise.getWeight().toString());
-            editReps.setText(exercise.getReps().toString());
+            //editWeight.setText(exercise.getWeight().toString());
+            //editReps.setText(exercise.getReps().toString());
 
         }
 
@@ -80,13 +80,13 @@ public class ExerciseEditActivity extends AppCompatActivity {
             System.out.println(type);
             String name = exerciseNameEditText.getText().toString();
             String description = exerciseDescriptionEditText.getText().toString();
-            Integer weight = Integer.parseInt(editWeight.getText().toString());
-            Integer reps = Integer.parseInt(editReps.getText().toString());
+            //Integer weight = Integer.parseInt(editWeight.getText().toString());
+            //Integer reps = Integer.parseInt(editReps.getText().toString());
 
             if(Objects.equals(getIntent().getStringExtra("key"), "new")){
-                Storage.getInstance().addExercise(new Exercise(type, name, description, weight, reps));
+                Storage.getInstance().addExercise(new Exercise(type, name, description, 0,0));
             }else{
-                Storage.getInstance().editExercise(new Exercise(type, name, description, weight, reps), exercise.getExerciseID());
+                Storage.getInstance().editExercise(new Exercise(type, name, description, 0,0), exercise.getExerciseID());
             }
             Storage.getInstance().saveExercisesToFile(getApplicationContext());
             //Storage.getInstance().loadExercisesFromFile(getApplicationContext());

@@ -2,6 +2,7 @@ package com.example.repocounter.statisticsPackage;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -66,11 +68,23 @@ public class StatisticsActivity extends AppCompatActivity {
                 String dateString = String.format("%d/%d/%d", dayOfMonth, month + 1, year);
                 //Toast.makeText(StatisticsActivity.this, dateString, Toast.LENGTH_SHORT).show();
 
-                LocalDate selectedDate = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O    ) {
-                    selectedDate = LocalDate.of(year, month+1, dayOfMonth);
+                LocalDateTime selectedDateTime = null;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O    ) {
+                    selectedDateTime = LocalDateTime.of(year, month+1, dayOfMonth,0,0);
                 }
-                WorkoutLogEntry logEntry = workoutLog.get(selectedDate);
+                WorkoutLogEntry logEntry = null; // Initialize to null
+
+                // Iterate through workoutLog entries
+                for (Map.Entry<LocalDateTime, WorkoutLogEntry> entry : workoutLog.entrySet()) {
+                    LocalDateTime entryDateTime = entry.getKey();
+                    // Compare only the date part (year, month, day)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        if (entryDateTime.toLocalDate().equals(selectedDateTime.toLocalDate())) {
+                            logEntry = entry.getValue();
+                            break; // Found the matching entry, exit the loop
+                        }
+                    }
+                }
 
                 if (logEntry != null) {
                     Dialog dialog = new Dialog(StatisticsActivity.this);

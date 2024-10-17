@@ -38,6 +38,7 @@ public class ExercisesListAdapter extends RecyclerView.Adapter<ExercisesViewHold
         holder.typeTextView.setText(exercises.get(position).getExerciseType().getDisplayName() + ": ");
         holder.nameTextView.setText(exercises.get(position).getExerciseName());
         holder.exerciseEditImageView.setImageResource(R.drawable.baseline_settings_24);
+        holder.exerciseDeleteImageView.setImageResource(R.drawable.baseline_delete_24);
 
         holder.exerciseEditImageView.setOnClickListener(view -> {
             System.out.println(exercises.get(position).getExerciseName());
