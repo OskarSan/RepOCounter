@@ -65,8 +65,10 @@ public class ExercisesActivity extends AppCompatActivity {
             Button backButton = findViewById(R.id.exercisesBackButton);
             backButton.setOnClickListener(view -> {
                 Storage.getInstance().saveExercisesToFile(getApplicationContext());
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the activity stack
                 startActivity(intent);
+                finish();
             });
         }
 
